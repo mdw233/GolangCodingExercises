@@ -2,10 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"bufio"
-	"strconv"
-	"strings"
 	"./common"
 )
 
@@ -13,7 +9,6 @@ import (
 //problem here: https://stackoverflow.com/questions/1066234/the-skyline-problem
 //and here: http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=3&page=show_problem&problem=41
 func main() {
-fmt.Println("works")
 
 	//get a list of points
 	var buildings = skylinecommon.GetTestData()
@@ -32,6 +27,14 @@ fmt.Println("works")
 			}
 		}
 	}
+
+	//1. now draw the line
+	//2. find the first non 0 height - that index is the starting point
+	//	find the height of that - that's the first x
+	//3. continue over the array - each time the height changes, record the new index, then height
+	//4. at the very end put a 0
+
+	//may actually be able to short cicuit all of this and just start at 3.
 
 	for i, p := range earth {
 		fmt.Println(i, p)

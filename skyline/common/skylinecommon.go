@@ -13,8 +13,8 @@ type Outline struct {
 	R int
 }
 
-func GetTestData() Outline[] {
-	file, _ := os.Open("skylineinput.txt")
+func GetTestData() []Outline {
+	file, _ := os.Open("common/skylineinput.txt")
 	defer file.Close()
 
 	var outlines []Outline
