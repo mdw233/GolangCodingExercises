@@ -14,7 +14,7 @@ func main() {
 	var buildings = skylinecommon.GetTestData()
 
 	//build up an int array large enough to handle all points
-	//let's call that 10 for now
+	//let's call that 40 for now
 	var earth [40]int
 
 	//iterate over the list of outlines
@@ -39,5 +39,4 @@ func main() {
 	for i, p := range earth {
 		fmt.Println(i, p)
 	}
-
 }
