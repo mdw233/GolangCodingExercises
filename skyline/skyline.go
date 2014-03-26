@@ -6,21 +6,17 @@ import (
 	"bufio"
 	"strconv"
 	"strings"
+	"./common"
 )
-
-type Outline struct {
-	L int
-	H int
-	R int
-}
 
 
 //problem here: https://stackoverflow.com/questions/1066234/the-skyline-problem
 //and here: http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=3&page=show_problem&problem=41
 func main() {
+fmt.Println("works")
 
 	//get a list of points
-	var buildings = getTestDataSet()
+	var buildings = skylinecommon.GetTestData()
 
 	//build up an int array large enough to handle all points
 	//let's call that 10 for now
@@ -41,25 +37,4 @@ func main() {
 		fmt.Println(i, p)
 	}
 
-}
-
-func getTestDataSet() []Outline {
-
-	file, _ := os.Open("skylineinput.txt")
-	defer file.Close()
-
-	var outlines []Outline
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lineSplit :=  strings.Split(scanner.Text(), " ")
-		x, _ := strconv.Atoi(lineSplit[0])
-		h, _ := strconv.Atoi(lineSplit[1])
-		y, _ := strconv.Atoi(lineSplit[2])
-
-		outlines = append(outlines, Outline { x, h, y })
-	}
-
-	//var dataset = []Outline{ Outline{1, 11, 5}, Outline{2, 6, 7}, Outline{3, 13, 9}, Outline{12, 7, 6}, Outline{14, 3, 25}, Outline{19, 18, 22}, Outline{23, 13, 29}, Outline{24, 4, 28} }
-
-	return outlines
 }
