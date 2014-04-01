@@ -36,30 +36,14 @@ func main() {
 	var skyline []int
 	indexOfLastChange, lastHeight := 0, 0
 	for i := 0; i < len(earth); i++ {
-		if earth[i] == 0 {
-			if lastHeight > 0 {
-				skyline = append(skyline, i - 1)
-				skyline = append(skyline, 0)
 
-				indexOfLastChange = i
-				lastHeight = earth[i]
-			}
-		} else {
-			if lastHeight == 0 {
-				skyline = append(skyline, i)
-				skyline = append(skyline, earth[i])
-
-				indexOfLastChange = i
-				lastHeight = earth[i]
-			} else if lastHeight != earth[i] {
-				//draw the horizontal line
-				skyline = append(skyline, i - indexOfLastChange)
-				skyline = append(skyline, earth[i])
-
-				indexOfLastChange = i
-				lastHeight = earth[i]
-			}
+		//if the height has changed at all, mark down the index and height
+		if lastHeight != earth[i] {
+			skyline = append(skyline, i)
+			skyline = append(skyline, earth[i])
 		}
+
+		lastHeight = earth[i]
 	}
 
 	//may actually be able to short cicuit all of this and just start at 3.
