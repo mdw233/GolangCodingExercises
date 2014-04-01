@@ -28,15 +28,43 @@ func main() {
 		}
 	}
 
-	//1. now draw the line
-	//2. find the first non 0 height - that index is the starting point
-	//	find the height of that - that's the first x
-	//3. continue over the array - each time the height changes, record the new index, then height
-	//4. at the very end put a 0
+	//iterate over array
+	//1. start by finding the first non-zero height
+	//2. when the height at an index changes, mark the difference between this and the last index change and add that to the line array
+	//3. then add the height to the line array
+	//4. unless the new height is 0, then mark that height of the in
+	var skyline []int
+	indexOfLastChange, lastHeight := 0, 0
+	for i := 0; i < len(earth); i++ {
+		if earth[i] == 0 {
+			if lastHeight > 0 {
+				skyline = append(skyline, i - 1)
+				skyline = append(skyline, 0)
+
+				indexOfLastChange = i
+				lastHeight = earth[i]
+			}
+		} else {
+			if lastHeight == 0 {
+				skyline = append(skyline, i)
+				skyline = append(skyline, earth[i])
+
+				indexOfLastChange = i
+				lastHeight = earth[i]
+			} else if lastHeight != earth[i] {
+				//draw the horizontal line
+				skyline = append(skyline, i - indexOfLastChange)
+				skyline = append(skyline, earth[i])
+
+				indexOfLastChange = i
+				lastHeight = earth[i]
+			}
+		}
+	}
 
 	//may actually be able to short cicuit all of this and just start at 3.
 
-	for i, p := range earth {
-		fmt.Println(i, p)
+	for i := 0; i < len(skyline); i++ {
+		fmt.Println(skyline[i])
 	}
 }
