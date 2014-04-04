@@ -53,8 +53,8 @@ func PrintSkyline(buildings []Outline) {
 	}
 
 	//1. iterate over array
-	//2. when the height at an index changes, mark the difference between this and the last index change and add that to the line array
-	//3. then add the height to the line array
+	//2. when the height at an index changes, mark the height and index
+	//3. keep track of the lastheight
 	var skyline []int
 	lastHeight := 0
 	for i := 0; i < len(earth); i++ {
